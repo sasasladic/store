@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar"
+import LoginSignin from "../components/LoginSignin"
 
 const Profile = () => {
-  return <div>
-    <Navbar></Navbar>
-    <h1>Profile</h1>
-  </div>
+  return <section className='profile'>
+      <Navbar />
+      <LoginSignin />
+  </section>
 }
 
 export default Profile
