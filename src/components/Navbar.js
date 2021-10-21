@@ -9,11 +9,9 @@ const Navbar = () => {
 
   const [isMobile, setIsMobile] = useState(false);
 
-  console.log(isMobile)
 
   // checking if it is mobile
   useLayoutEffect(() => {
-    console.log('width check');
     if (getWidth() < 1000) {
       setIsMobile(true)
     }

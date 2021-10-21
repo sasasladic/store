@@ -6,10 +6,32 @@ import Profile from './pages/Profile'
 import AllProducts from './pages/AllProducts';
 import SingleProduct from './pages/SingleProduct';
 import Contact from './pages/Contact';
-
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { authActions } from './context/Context';
 
 function App() {
   
+  // if there is a token in localStorage, try to log in
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get('https://api.orders.galeja.net/api/me', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(res => {
+        console.log('%cLogin successful', 'color:green');
+        dispatch(authActions.login({ user: res.data.data }));
+      }).catch(() => {
+        console.log('%cLogin failed', 'color: red');
+      })
+    }
+    
+  }, []);
+
   return (
     <Router>
       <Switch>

@@ -1,13 +1,24 @@
+import '../css/carousel.css';
+import { Carousel } from "react-responsive-carousel";
+
 const Hero = () => {
 
-  return <section className='hero' style={{ 
-    backgroundImage: `url(${process.env.PUBLIC_URL + '/img/hero.png'})`,
-    backgroundRepeat: 'no-repeat',
-  }}>
+  return <section className='hero'>
     <div className="heroInner">
-      {/* <h1>Poručite vašu <span>Kraljicu</span></h1>
-      <h1>na kućnu adresu.</h1>
-      <button className='btn big'>POGLEDAJTE PROIZVODE</button> */}
+      <Carousel showArrows={true}>
+        <div>
+          <img src={`${process.env.PUBLIC_URL + '/img/image1.png'}`} />
+        </div>
+        <div>
+          <img src={`${process.env.PUBLIC_URL + '/img/image2.png'}`}  />
+        </div>
+        <div>
+          <img src={`${process.env.PUBLIC_URL + '/img/image3.png'}`}  />
+        </div>
+        <div>
+          <img src={`${process.env.PUBLIC_URL + '/img/image4.png'}`}  />
+        </div>
+      </Carousel>
     </div>
   </section>
 }

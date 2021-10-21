@@ -16,6 +16,25 @@ const generalSlice = createSlice({
 });
 
 
+const authInitialValue = {
+  isLoggedIn: false,
+  user: {}
+}
+const authSlice = createSlice({
+  name: 'auth',
+  initialState: authInitialValue,
+  reducers: {
+    login(state, action) {
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+    },
+    logout(state) {
+      state.isLoggedIn = false;
+      state.user = {};
+    }
+  }
+});
+
 // const authInitialValue = {
 //   isLoggedIn: false,
 //   isAdmin: false
@@ -37,11 +56,13 @@ const generalSlice = createSlice({
 
 const store = configureStore({
   reducer: {
-    general: generalSlice.reducer
+    general: generalSlice.reducer,
+    auth: authSlice.reducer
   }
 })
 
 export const generalActions = generalSlice.actions;
+export const authActions = authSlice.actions;
 // export const authenticationActions = authSlice.actions;
 
 export default store;
