@@ -1,5 +1,6 @@
 import { Fragment, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/logo.png'
 
 import getWidth from "../helperFunctions/getWidth";
 
@@ -100,7 +101,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className='navbarInner-logo'>
-          <img src="/img/logo.png" alt="Kraljica Kafa Logo" />
+          <img src={logo} alt="Logo" />
         </div>
       </div>
     </header>

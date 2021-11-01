@@ -32,12 +32,12 @@ const LoginSigninForms = () => {
     document.querySelector('.loginSpinner').classList.remove('hide');
     axios.post("https://api.orders.galeja.net/api/login", userData).then(res => {
       //success
-      document.querySelector('.signupSpinner').classList.add('hide');
+      document.querySelector('.loginSpinner').classList.add('hide');
       localStorage.setItem('token', res.data.data.token);
       dispatch(authActions.login({ user: res.data.data }));
     }).catch(() => {
       //fail
-      document.querySelector('.signupSpinner').classList.add('hide');
+      document.querySelector('.loginSpinner').classList.add('hide');
       setIsError('The given data was invalid');
     });
   }

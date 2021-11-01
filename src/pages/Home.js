@@ -4,16 +4,32 @@ import CartButton from '../components/CartButton'
 import FeaturedProducts from '../components/FeaturedProducts'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
+import axios from "axios";
+import { useEffect, useState } from "react"
 
 const Home = () => {
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios.get('https://api.orders.galeja.net/api/homepage').then(res => {
+      setData(res.data.data);
+    }).catch(err => {
+      console.log('err', err);
+    });
+  }, [])
+
   return <div>
     <Navbar/>
     <Hero />
     <CartButton />
-    <FeaturedProducts />
+    {data ? 
+      <FeaturedProducts products={data.products} />
+      :
+      <FeaturedProducts products={null} /> 
+    }
     <Newsletter />
     <Footer />
-
   </div>
 }
 
