@@ -7,7 +7,7 @@ const ProductCard = ({ img, name }) => {
     </div>
     <div className='productCard-description'>
       <h4>{name}</h4>
-      <Button size='small' variant='contained' disableElevation>add to cart</Button>
+      <Button size='small' variant='outlined' >add to cart</Button>
     </div>
   </div>
 }

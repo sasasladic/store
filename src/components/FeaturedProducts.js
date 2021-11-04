@@ -15,7 +15,6 @@ const FeaturedProducts = ({products}) => {
       return <ProductCard key={product.name} img={product.image.src} name={product.name} />
     });
   }
-  console.log(allProducts);
 
 
   

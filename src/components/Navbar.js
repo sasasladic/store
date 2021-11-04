@@ -1,12 +1,13 @@
 import { Fragment, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.png'
-
 import getWidth from "../helperFunctions/getWidth";
-
 import MiniHeader from "./MiniHeader";
+import { Box, CircularProgress } from '@mui/material'
+import FemaleHoverContainer from "./hoverContainers/FemaleHoverContainer";
+import MaleHoverContainer from "./hoverContainers/MaleHoverContainer";
 
-const Navbar = () => {
+const Navbar = ({genders}) => {
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -42,7 +43,8 @@ const Navbar = () => {
             </svg>
           </li>
           <li className={pathname === '/' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/'>HOME</Link></li>
-          <li className={pathname === '/allProducts' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/allProducts'>ALL PRODUCTS</Link></li>
+          <li className={pathname === '/allProducts' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/allProducts'>MALE</Link></li>
+          <li className={pathname === '/allProducts' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/allProducts'>FEMALE</Link></li>
           <li className={pathname === '/contact' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/contact'>CONTACT</Link></li>
     
           <li className='mobile-menu-social'>
@@ -94,7 +96,30 @@ const Navbar = () => {
               :
             <ul>
               <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
-              <li className={pathname === '/allProducts' ? 'active' : ''}><Link to='/allProducts'>ALL PRODUCTS</Link></li>
+                <li id='linkMale' className={pathname === '/allProducts' ? 'active' : ''}><Link to='/allProducts'>
+                  MALE
+                  <div className='maleHoverContainer hoverContainer hide'>
+                    {genders ?
+                      <MaleHoverContainer data={ genders[0].categories}/>
+                      :
+                      <Box sx={{ display: 'flex', margin: '40px' }}>
+                        <CircularProgress />
+                      </Box>
+                    }
+                  </div>
+                </Link></li>
+                <li id='linkFemale' className={pathname === '/allProducts' ? 'active' : ''}><Link to='/allProducts'>
+                  FEMALE
+                  <div className='femaleHoverContainer hoverContainer hide'>
+                    {genders ?
+                      <FemaleHoverContainer data={ genders[1].categories} />
+                      :
+                      <Box sx={{ display: 'flex', margin: '40px' }}>
+                        <CircularProgress />
+                      </Box>
+                    }
+                  </div>
+                </Link></li>
               <li className={pathname === '/contact' ? 'active' : ''}><Link to='/contact'>CONTACT</Link></li>
             </ul>}
     

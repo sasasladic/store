@@ -63,7 +63,6 @@ div.hide{
 
 
 /* MINI HEADER SECTION */
-
 .miniHeader{
   height: 50px;
   width: 100%;
@@ -100,8 +99,40 @@ div.hide{
   color: #fafafa;
   background-color: rgba(255, 255, 255, 0.164);
 }
-.miniHeader-cart .counter {
-  padding-left: 10px;
+
+/* HOVER CONTAINER STYLES */
+.hoverContainer{
+  z-index: 3;
+  background-color: #ffffff;
+  position: absolute;
+  width: 100%;
+  top: 160px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header #linkMale:hover .maleHoverContainer {
+  display: flex;
+  color: #000000;
+  font-weight: normal;
+}
+header #linkFemale:hover .femaleHoverContainer{
+  display: flex;
+  color:black;
+  font-weight: normal;
+}
+header .categorie{
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+header .hovCont{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 100%;
+  display: flex;
 }
 
 
@@ -143,6 +174,7 @@ header {
 }
 .navbarInner-links-router ul li a:hover{
   color: var(--primaryColor);
+  cursor: initial;
 }
 .navbarInner-links-router ul li a{
   color: var(--textColor);
@@ -333,9 +365,12 @@ header {
   padding: 40px 0;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .featuredProducts .cardContainer .productCard{
   width: 15%;
+  min-width: 170px;
+  margin-bottom: 20px;
 }
 .productCard{
   padding: 10px;
@@ -344,7 +379,12 @@ header {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  transition: 200ms;
 }
+.productCard:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+} 
 .productCard-description{
   flex-grow: 1;
   display: flex;

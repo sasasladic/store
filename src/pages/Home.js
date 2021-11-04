@@ -20,7 +20,11 @@ const Home = () => {
   }, [])
 
   return <div>
-    <Navbar/>
+    {data ?
+      <Navbar genders={data.genders}></Navbar>  
+      :
+      <Navbar genders={null}></Navbar>
+    }
     <Hero />
     <CartButton />
     {data ? 
