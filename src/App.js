@@ -3,7 +3,8 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Profile from './pages/Profile'
-import AllProducts from './pages/AllProducts';
+import MalePage from './pages/MalePage';
+import FemalePage from './pages/FemalePage';
 import SingleProduct from './pages/SingleProduct';
 import Contact from './pages/Contact';
 import { useDispatch } from 'react-redux';
@@ -38,7 +39,8 @@ function App() {
         <Route exact path='/' component={Home}></Route>
         <Route exact path='/cart' component={Cart}></Route>
         <Route exact path='/profile' component={Profile}></Route>
-        <Route exact path='/allProducts' component={AllProducts}></Route>
+        <Route exact path='/male' component={MalePage}></Route>
+        <Route exact path='/female' component={FemalePage}></Route>
         <Route exact path='/singleProduct' component={SingleProduct}></Route>
         <Route exact path='/contact' component={Contact}></Route>
       </Switch>

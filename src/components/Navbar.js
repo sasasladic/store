@@ -43,8 +43,8 @@ const Navbar = ({genders}) => {
             </svg>
           </li>
           <li className={pathname === '/' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/'>HOME</Link></li>
-          <li className={pathname === '/allProducts' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/allProducts'>MALE</Link></li>
-          <li className={pathname === '/allProducts' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/allProducts'>FEMALE</Link></li>
+          <li className={pathname === '/male' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/male'>MALE</Link></li>
+          <li className={pathname === '/female' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/female'>FEMALE</Link></li>
           <li className={pathname === '/contact' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/contact'>CONTACT</Link></li>
     
           <li className='mobile-menu-social'>
@@ -96,7 +96,7 @@ const Navbar = ({genders}) => {
               :
             <ul>
               <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
-                <li id='linkMale' className={pathname === '/allProducts' ? 'active' : ''}><Link to='/allProducts'>
+                <li id='linkMale' className={pathname === '/male' ? 'active' : ''}><Link to='/male'>
                   MALE
                   <div className='maleHoverContainer hoverContainer hide'>
                     {genders ?
@@ -108,7 +108,7 @@ const Navbar = ({genders}) => {
                     }
                   </div>
                 </Link></li>
-                <li id='linkFemale' className={pathname === '/allProducts' ? 'active' : ''}><Link to='/allProducts'>
+                <li id='linkFemale' className={pathname === '/female' ? 'active' : ''}><Link to='/female'>
                   FEMALE
                   <div className='femaleHoverContainer hoverContainer hide'>
                     {genders ?

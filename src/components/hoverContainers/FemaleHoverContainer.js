@@ -6,7 +6,7 @@ const FemaleHoverContainer = ({ data }) => {
   categories.forEach(cat => {
     const subcategoriesDom = [];
     cat.children.forEach(child => {
-      subcategoriesDom.push(<p>{child.name}</p>);
+      subcategoriesDom.push(<p key={child.name}>{child.name}</p>);
     })
     categoriesDom.push(<div className='categorie' key={cat.name}>
       <h3>{cat.name}</h3>
