@@ -174,7 +174,7 @@ header {
 }
 .navbarInner-links-router ul li a:hover{
   color: var(--primaryColor);
-  cursor: initial;
+  cursor: pointer;
 }
 .navbarInner-links-router ul li a{
   color: var(--textColor);
@@ -339,6 +339,12 @@ header {
   justify-content: center;
   overflow: hidden;
 }
+.featuredProducts .genders .card .cardLink {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  z-index: 5;
+}
 .featuredProducts .genders .card .bg{
   position: absolute;
   width: 100%;
@@ -346,13 +352,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-  filter: grayscale(70%);
   transition: 700ms;
-}
-.featuredProducts .genders .card .bg:hover{
-  cursor: pointer;
-  transform: scale(1.1);
-  filter: grayscale(0);
 }
 .featuredProducts .genders .card span{
   z-index: 1;
@@ -360,6 +360,9 @@ header {
   color: white;
   font-size: 39px;
   text-shadow: 0px 0px 10px #000000;
+}
+.featuredProducts .genders .card span:hover{
+  cursor: pointer;
 }
 .featuredProducts .cardContainer{
   padding: 40px 0;
@@ -401,6 +404,7 @@ header {
   border-radius: 5px;
   height: 150px;
 }
+
 
 /* mobile  */
 @media screen and (max-width: 1000px){
