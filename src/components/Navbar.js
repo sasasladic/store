@@ -98,28 +98,28 @@ const Navbar = ({genders}) => {
               <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
               <li id='linkMale' className={pathname === '/male' ? 'active' : ''}><Link to='/male'>
                 MALE
-                <div className='maleHoverContainer hoverContainer hide'>
-                  {genders ?
-                    <MaleHoverContainer data={ genders[0].categories}/>
-                    :
-                    <Box sx={{ display: 'flex', margin: '40px' }}>
-                      <CircularProgress />
-                    </Box>
-                  }
-                </div>
               </Link></li>
+              <div className='maleHoverContainer hoverContainer hide'>
+                {genders ?
+                  <MaleHoverContainer data={ genders[0].categories}/>
+                  :
+                  <Box sx={{ display: 'flex', margin: '40px' }}>
+                    <CircularProgress />
+                  </Box>
+                }
+              </div>
               <li id='linkFemale' className={pathname === '/female' ? 'active' : ''}><Link to='/female'>
                 FEMALE
-                <div className='femaleHoverContainer hoverContainer hide'>
-                  {genders ?
-                    <FemaleHoverContainer data={ genders[1].categories} />
-                    :
-                    <Box sx={{ display: 'flex', margin: '40px' }}>
-                      <CircularProgress />
-                    </Box>
-                  }
-                </div>
               </Link></li>
+              <div className='femaleHoverContainer hoverContainer hide'>
+                {genders ?
+                  <FemaleHoverContainer data={ genders[1].categories} />
+                  :
+                  <Box sx={{ display: 'flex', margin: '40px' }}>
+                    <CircularProgress />
+                  </Box>
+                }
+              </div>
               <li className={pathname === '/contact' ? 'active' : ''}><Link to='/contact'>CONTACT</Link></li>
             </ul>}
     

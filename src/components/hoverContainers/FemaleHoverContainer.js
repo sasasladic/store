@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const FemaleHoverContainer = ({ data }) => {
   
   const categories = data.map(el => el);
@@ -6,7 +8,7 @@ const FemaleHoverContainer = ({ data }) => {
   categories.forEach(cat => {
     const subcategoriesDom = [];
     cat.children.forEach(child => {
-      subcategoriesDom.push(<p key={child.name}>{child.name}</p>);
+      subcategoriesDom.push(<p key={child.name}><Link to={`/female/${child.id}`}>{child.name}</Link></p>);
     })
     categoriesDom.push(<div className='categorie' key={cat.name}>
       <h3>{cat.name}</h3>

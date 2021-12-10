@@ -12,6 +12,7 @@ const FeaturedProducts = ({products}) => {
   
   let allProducts;
   if (products) {
+
     allProducts = products.map(product => {
       return <ProductCard key={product.name} img={product.image.src} name={product.name} />
     });

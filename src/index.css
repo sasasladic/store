@@ -112,14 +112,20 @@ div.hide{
   justify-content: center;
   align-items: center;
 }
-header #linkMale:hover .maleHoverContainer {
+header #linkMale:hover + .maleHoverContainer {
   display: flex;
-  color: #000000;
   font-weight: normal;
 }
-header #linkFemale:hover .femaleHoverContainer{
+header #linkFemale:hover + .femaleHoverContainer{
   display: flex;
-  color:black;
+  font-weight: normal;
+}
+.maleHoverContainer:hover{
+  display: flex;
+  font-weight: normal;
+}
+.femaleHoverContainer:hover{
+  display: flex;
   font-weight: normal;
 }
 header .categorie{
@@ -133,6 +139,13 @@ header .hovCont{
   padding: 40px 20px;
   width: 100%;
   display: flex;
+}
+header .hovCont:hover{
+  cursor: auto;
+}
+header .hovCont p:hover, header .hovCont h3:hover{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 

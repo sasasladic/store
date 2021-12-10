@@ -1,0 +1,25 @@
+.allProducts .description{
+  border-top: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(114, 114, 114);
+  padding: 20px 0;
+}
+.allProducts h1 {
+  text-align: center;
+  color: black;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.allProducts .categorieName{
+  text-align: center;
+  font-weight: normal;
+  font-style: italic;
+}
+.allProducts .spinnerContainer{
+  display: flex;
+  justify-content: center;
+}
+.allProducts .productsList{
+  /* todo: remove min-height */
+  min-height: 50vh;
+}
