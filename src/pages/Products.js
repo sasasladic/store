@@ -4,12 +4,13 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { CircularProgress } from '@mui/material'
 import ProductCard from '../components/ProductCard'
+import Footer from '../components/Footer'
 
 const Products = () => {
 
   const [data, setData] = useState(null);
   const user = useSelector(state => state.auth.user);
-  const [productsData, setProductsData] = useState(null);
+  const [productsData, setProductsData] = useState([]);
 
   let categorie = window.location.href.split('/')[window.location.href.split('/').length - 1];
   const gender = categorie[0] == 'm' ? 'Male' : 'Female';
@@ -39,12 +40,17 @@ const Products = () => {
   // loading page data
   useEffect(() => {
     setProductsData(null);
-    axios.get(`https://api.orders.galeja.net/api/product?filter[genders.gender]=${gender}&filter[categories.name]=${categorie}`).then(res => {
+    console.log(gender);
+    let url = `https://api.orders.galeja.net/api/product?filter[genders.gender]=${gender}&filter[categories.name]=${categorie}`;
+    if (categorie === 'ALL') {
+      url = `https://api.orders.galeja.net/api/product?filter[genders.gender]=${gender}`;
+    }
+    axios.get(url).then(res => {
       setProductsData(res.data.data);
     }).catch(err => {
       console.log(err);
     });
-  }, [categorie]);
+  }, [categorie, gender]);
 
   // todo: categorie description, Sasa mora da doda kad mi vraca proizvode da vraca i opis kategorije 
   return <div className="allProducts">
@@ -54,13 +60,14 @@ const Products = () => {
       <Navbar genders={null}></Navbar>
     }
     <div className="description">
-      <h1>MALE</h1>
+      <h1>{gender === 'Male' ? 'MEN' : 'WOMEN'}</h1>
       <h2 className="categorieName">{categorie}</h2>
       { productsData ? <p className="descriptionText">{}</p> : null }
     </div>
     <div className="productsList">
       {productsData ? <LoadProductItems data={productsData}/> : <div className="spinnerContainer"><CircularProgress /></div> }
     </div>
+    <Footer></Footer>
   </div>
 }
 

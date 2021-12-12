@@ -43,8 +43,8 @@ const Navbar = ({genders}) => {
             </svg>
           </li>
           <li className={pathname === '/' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/'>HOME</Link></li>
-          <li className={pathname === '/male' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/male'>MALE</Link></li>
-          <li className={pathname === '/female' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/female'>FEMALE</Link></li>
+          <li className={pathname === '/male' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/products/mALL'>MAN</Link></li>
+          <li className={pathname === '/female' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/products/fALL'>WOMEN</Link></li>
           <li className={pathname === '/contact' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/contact'>CONTACT</Link></li>
     
           <li className='mobile-menu-social'>
@@ -96,8 +96,8 @@ const Navbar = ({genders}) => {
               :
             <ul className='desktopMenuContainer'>
               <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
-              <li id='linkMale' className={pathname === '/male' ? 'active' : ''}><Link to='/male'>
-                MALE
+              <li id='linkMale' className={pathname.slice(0, 11) === '/products/m' ? 'active' : ''}><Link to='/products/mALL'>
+                MEN
               </Link></li>
               <div className='maleHoverContainer hoverContainer hide'>
                 {genders ?
@@ -108,8 +108,8 @@ const Navbar = ({genders}) => {
                   </Box>
                 }
               </div>
-              <li id='linkFemale' className={pathname === '/female' ? 'active' : ''}><Link to='/female'>
-                FEMALE
+              <li id='linkFemale' className={pathname.slice(0, 11) === '/products/f' ? 'active' : ''}><Link to='/products/fALL'>
+                WOMEN
               </Link></li>
               <div className='femaleHoverContainer hoverContainer hide'>
                 {genders ?

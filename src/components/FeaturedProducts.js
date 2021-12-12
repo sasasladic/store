@@ -26,13 +26,13 @@ const FeaturedProducts = ({products}) => {
       <h1 className='featuredProducts-header'>Categories</h1>
       <div className='genders'>
         <div className='card'>
-          <Link className='cardLink' to='/male'></Link>
-          <span>MALE</span>
+          <Link className='cardLink' to='/products/mALL'></Link>
+          <span>MEN</span>
           <div style={{backgroundImage: `url(${maleImage})`}} className='bg'></div>
         </div>
         <div className='card'>
-          <Link className='cardLink' to='/female'></Link>
-          <span>FEMALE</span>
+          <Link className='cardLink' to='/products/fALL'></Link>
+          <span>WOMEN</span>
           <div style={{backgroundImage: `url(${femaleImage})`}} className='bg'></div>
         </div>
       </div>

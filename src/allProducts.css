@@ -1,11 +1,13 @@
 .allProducts .description{
   border-top: 1px solid rgb(0, 0, 0);
+  background-color: #003c4d;
+  color: whitesmoke;
   border-bottom: 1px solid rgb(114, 114, 114);
   padding: 20px 0;
 }
 .allProducts h1 {
   text-align: center;
-  color: black;
+  color: whitesmoke;
   font-size: 25px;
   font-weight: 900;
   letter-spacing: 2px;
@@ -22,4 +24,15 @@
 .allProducts .productsList{
   /* todo: remove min-height */
   min-height: 50vh;
+
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.allProducts .productsList .productCard{
+  width: 15%;
+  min-width: 170px;
+  margin-bottom: 20px;
+  height: 300px;
 }
