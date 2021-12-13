@@ -39,7 +39,7 @@ function App() {
         <Route exact path='/cart' component={Cart}></Route>
         <Route exact path='/profile' component={Profile}></Route>
         <Route exact path='/products/:categorie' component={Products}></Route>
-        <Route exact path='/singleProduct' component={SingleProduct}></Route>
+        <Route exact path='/singleProduct/:id' component={SingleProduct}></Route>
         <Route exact path='/contact' component={Contact}></Route>
       </Switch>
     </Router>

@@ -43,8 +43,8 @@ const Navbar = ({genders}) => {
             </svg>
           </li>
           <li className={pathname === '/' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/'>HOME</Link></li>
-          <li className={pathname === '/male' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/products/mALL'>MAN</Link></li>
-          <li className={pathname === '/female' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/products/fALL'>WOMEN</Link></li>
+          <li className={pathname.slice(0, 11) === '/products/m' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/products/mALL'>MAN</Link></li>
+          <li className={pathname.slice(0, 11) === '/products/f' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/products/fALL'>WOMEN</Link></li>
           <li className={pathname === '/contact' ? 'active mobile-menu-route' : 'mobile-menu-route'}><Link to='/contact'>CONTACT</Link></li>
     
           <li className='mobile-menu-social'>

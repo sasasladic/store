@@ -8,10 +8,10 @@ const FemaleHoverContainer = ({ data }) => {
   categories.forEach(cat => {
     const subcategoriesDom = [];
     cat.children.forEach(child => {
-      subcategoriesDom.push(<p key={child.name}><Link to={`/products/f${child.name}`}>{child.name}</Link></p>);
+      subcategoriesDom.push(<p key={child.name}><Link to={`/products/f${child.category_gender_id}`}>{child.name}</Link></p>);
     })
     categoriesDom.push(<div className='categorie' key={cat.name}>
-      <h3><Link to={`/products/f${cat.name}`}>{cat.name}</Link></h3>
+      <h3><Link to={`/products/f${cat.category_gender_id}`}>{cat.name}</Link></h3>
       {subcategoriesDom}
     </div>)
   })

@@ -384,18 +384,21 @@ header {
   flex-wrap: wrap;
 }
 .featuredProducts .cardContainer .productCard{
-  width: 15%;
-  min-width: 170px;
   margin-bottom: 20px;
+  width: 30%;
+}
+.featuredProducts .cardContainer .productCard img{
+  width: 100%;
+  height: unset;
 }
 .productCard{
-  padding: 10px;
+  width: 250px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border: 1px solid grey;
-  border-radius: 5px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   transition: 200ms;
+  padding-bottom: 20px;
 }
 .productCard:hover{
   transform: scale(1.02);
@@ -412,14 +415,17 @@ header {
   text-align: center;
   font-weight: normal;
   margin: 15px 0;
+  color: #000000;
+  font-weight: bold;
+  opacity: .8;
 }
 .productCard-image{
   display: flex;
   justify-content: center;
 }
 .productCard-image img{
-  border-radius: 5px;
-  height: 150px;
+  border-radius: 15px 15px 0 0;
+  height: 250px;
 }
 /* FOOTER STYLES */
 .footer {
@@ -587,7 +593,16 @@ header {
     width: 90%;
   }
 
-  /* FEATURED PRODUCTS */
-  
+  /* FEATURED PRODUCTS STYLES */
+  .featuredProducts .cardContainer .productCard{
+    width: 40%;
+  }
 
+}
+
+@media screen and (max-width: 500px){
+  /* FEATURED PRODUCTS STYLES */
+  .featuredProducts .cardContainer .productCard{
+    width: 90%;
+  }
 }

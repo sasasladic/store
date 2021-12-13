@@ -10,7 +10,7 @@ const Products = () => {
 
   const [data, setData] = useState(null);
   const user = useSelector(state => state.auth.user);
-  const [productsData, setProductsData] = useState([]);
+  const [productsData, setProductsData] = useState(null);
 
   let categorie = window.location.href.split('/')[window.location.href.split('/').length - 1];
   const gender = categorie[0] == 'm' ? 'Male' : 'Female';
@@ -19,10 +19,12 @@ const Products = () => {
 
 
   const LoadProductItems = ({data}) => {
-    console.log(data);
-    const allProducts = data.map(product => {
-      return <ProductCard key={product.name} img={product.image.src} name={product.name} />
-    });
+    let allProducts = [];
+    if (data.length !== 0) {       
+      allProducts = data['products'].map(product => {
+        return <ProductCard key={product.name} img={product.image.src} name={product.name} id={product.id}/>
+      });
+    }
 
     return allProducts.length ? <Fragment>{allProducts}</Fragment> : <p>There are no items in selected categorie</p>;
   }
@@ -40,8 +42,7 @@ const Products = () => {
   // loading page data
   useEffect(() => {
     setProductsData(null);
-    console.log(gender);
-    let url = `https://api.orders.galeja.net/api/product?filter[genders.gender]=${gender}&filter[categories.name]=${categorie}`;
+    let url = `https://api.orders.galeja.net/api/product?category_gender_id=${categorie}`;
     if (categorie === 'ALL') {
       url = `https://api.orders.galeja.net/api/product?filter[genders.gender]=${gender}`;
     }
@@ -52,7 +53,6 @@ const Products = () => {
     });
   }, [categorie, gender]);
 
-  // todo: categorie description, Sasa mora da doda kad mi vraca proizvode da vraca i opis kategorije 
   return <div className="allProducts">
     {data ?
       <Navbar genders={data.genders}></Navbar>  
@@ -61,8 +61,8 @@ const Products = () => {
     }
     <div className="description">
       <h1>{gender === 'Male' ? 'MEN' : 'WOMEN'}</h1>
-      <h2 className="categorieName">{categorie}</h2>
-      { productsData ? <p className="descriptionText">{}</p> : null }
+      { productsData && productsData.category ? <h2 className="categorieName">{productsData.category.name}</h2> : null}
+      { productsData && productsData.category ? <p className="descriptionText">{productsData.category.description}</p> : null }
     </div>
     <div className="productsList">
       {productsData ? <LoadProductItems data={productsData}/> : <div className="spinnerContainer"><CircularProgress /></div> }
