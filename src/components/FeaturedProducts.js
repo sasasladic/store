@@ -14,7 +14,7 @@ const FeaturedProducts = ({products}) => {
   if (products) {
 
     allProducts = products.map(product => {
-      return <ProductCard key={product.name} img={product.image.src} name={product.name} id={product.id}/>
+      return <ProductCard key={product.name} img={product.image.src} name={product.name} id={product.id} price={product.price}/>
     });
   }
 

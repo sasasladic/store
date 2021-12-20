@@ -5,12 +5,14 @@ import { useSelector } from "react-redux";
 import { CircularProgress } from '@mui/material'
 import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
+import FiltersComponent from "../components/FiltersComonent";
 
 const Products = () => {
 
   const [data, setData] = useState(null);
   const user = useSelector(state => state.auth.user);
   const [productsData, setProductsData] = useState(null);
+  const [sortPrice, setSortPrice] = useState(false);
 
   let categorie = window.location.href.split('/')[window.location.href.split('/').length - 1];
   const gender = categorie[0] == 'm' ? 'Male' : 'Female';
@@ -18,11 +20,19 @@ const Products = () => {
   categorie = categorie.slice(1);
 
 
-  const LoadProductItems = ({data}) => {
+  const LoadProductItems = ({ data }) => {
     let allProducts = [];
+    // sorting products by price
+    if (sortPrice === 'fromTop'){
+      data.products.sort((a, b) => (parseInt(a.price.slice(0, -1)) > parseInt(b.price.slice(0, -1))) ? -1 : 1);
+    }
+    if (sortPrice === 'fromBottom') {
+      data.products.sort((a, b) => (parseInt(a.price.slice(0, -1)) > parseInt(b.price.slice(0, -1))) ? 1 : -1);
+    }
+
     if (data.length !== 0) {       
       allProducts = data['products'].map(product => {
-        return <ProductCard key={product.name} img={product.image.src} name={product.name} id={product.id}/>
+        return <ProductCard key={product.name} img={product.image.src} name={product.name} id={product.id} price={product.price}/>
       });
     }
 
@@ -64,6 +74,7 @@ const Products = () => {
       { productsData && productsData.category ? <h2 className="categorieName">{productsData.category.name}</h2> : null}
       { productsData && productsData.category ? <p className="descriptionText">{productsData.category.description}</p> : null }
     </div>
+    <FiltersComponent sortPrice={sortPrice} setSortPrice={setSortPrice}></FiltersComponent>
     <div className="productsList">
       {productsData ? <LoadProductItems data={productsData}/> : <div className="spinnerContainer"><CircularProgress /></div> }
     </div>

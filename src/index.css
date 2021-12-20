@@ -423,6 +423,10 @@ header {
   display: flex;
   justify-content: center;
 }
+.productCard .price{
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 176);
+}
 .productCard-image img{
   border-radius: 15px 15px 0 0;
   height: 250px;
