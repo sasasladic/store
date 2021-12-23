@@ -8,7 +8,7 @@ const ProductCard = ({ img, name, id, price }) => {
     </div></Link>
     <div className='productCard-description'>
       <Link to={`/singleProduct/${id}`}><h4>{name}</h4></Link>
-      <span className="price">{price}</span>
+      <span className="price">{price}€</span>
       <Button size='small' variant='contained' disableElevation >add to cart</Button>
     </div>
   </div>

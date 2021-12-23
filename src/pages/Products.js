@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { CircularProgress } from '@mui/material'
 import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
-import FiltersComponent from "../components/FiltersComonent";
+import FiltersComponent from "../components/FiltersComponent";
 
 const Products = () => {
 
@@ -24,10 +24,10 @@ const Products = () => {
     let allProducts = [];
     // sorting products by price
     if (sortPrice === 'fromTop'){
-      data.products.sort((a, b) => (parseInt(a.price.slice(0, -1)) > parseInt(b.price.slice(0, -1))) ? -1 : 1);
+      data.products.sort((a, b) => (a.price > b.price) ? -1 : 1);
     }
     if (sortPrice === 'fromBottom') {
-      data.products.sort((a, b) => (parseInt(a.price.slice(0, -1)) > parseInt(b.price.slice(0, -1))) ? 1 : -1);
+      data.products.sort((a, b) => (a.price > b.price) ? 1 : -1);
     }
 
     if (data.length !== 0) {       
