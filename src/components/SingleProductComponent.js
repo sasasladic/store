@@ -1,7 +1,8 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Button } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect, Fragment } from "react";
 import { Carousel } from "react-responsive-carousel";
+import ColorPicker from "./SingleProductSub/ColorPicker";
 
 const SingleProductComponent = () => {
 
@@ -9,6 +10,7 @@ const SingleProductComponent = () => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [sizeExists, setSizeExists] = useState(false);
   const [colorExists, setColorExists] = useState(false);
+
 
   // If product is loaded, set selected variant to first one
   useEffect(() => {
@@ -50,6 +52,10 @@ const SingleProductComponent = () => {
           <div className="container">
             <div className="left">
               <LoadGallery images={product.product_data.images}></LoadGallery>
+              {colorExists ?
+                <ColorPicker setVariant={setSelectedVariant} curr={selectedVariant} all={product.all_variants} /> :
+                null
+              }
             </div>
             <div className="right">
               <h1>{product.product_data.name}</h1>
@@ -57,8 +63,9 @@ const SingleProductComponent = () => {
               <p className="promoText">This product is excluded from all promotional discounts and offers.</p>
               {sizeExists ? 
                 'size does matter' :
-                'size doesnt matter'  
+                null  
               }
+              <Button variant="contained" size='big'>Add to Cart</Button>
             </div>
           </div>
           <h3 className="descHeader">Description</h3>
