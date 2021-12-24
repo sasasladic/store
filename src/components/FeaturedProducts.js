@@ -1,18 +1,21 @@
 import { Box } from "@mui/system";
 import { CircularProgress } from "@mui/material";
-
 import { Link} from 'react-router-dom'
 import maleImage from '../assets/male.jpg'
 import femaleImage from '../assets/female.jpg'
-
 import ProductCard from "./ProductCard";
 
+import { useSelector } from "react-redux";
+
+
 const FeaturedProducts = ({products}) => {
+
+  const cart = useSelector(state => state.cart);
+  console.log(cart);
 
   
   let allProducts;
   if (products) {
-
     allProducts = products.map(product => {
       return <ProductCard key={product.name} img={product.image.src} name={product.name} id={product.id} price={product.price}/>
     });

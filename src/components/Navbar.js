@@ -11,7 +11,6 @@ const Navbar = ({genders}) => {
 
   const [isMobile, setIsMobile] = useState(false);
 
-
   // checking if it is mobile
   useLayoutEffect(() => {
     if (getWidth() < 1000) {

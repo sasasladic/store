@@ -4,6 +4,8 @@ import { useState, useEffect, Fragment } from "react";
 import { Carousel } from "react-responsive-carousel";
 import SizePicker from "./SingleProductSub/SizePicker";
 import ColorPicker from "./SingleProductSub/ColorPicker";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../context/Context";
 
 const SingleProductComponent = () => {
 
@@ -12,6 +14,10 @@ const SingleProductComponent = () => {
   const [sizeExists, setSizeExists] = useState(false);
   const [colorExists, setColorExists] = useState(false);
 
+  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    dispatch(cartActions.addItem({ id: product.product_data.id, name: product.product_data.name, img: product.product_data.images[0].src, price: product.product_data.price}));
+  }
 
   // If product is loaded, set selected variant to first one
   useEffect(() => {
@@ -66,7 +72,7 @@ const SingleProductComponent = () => {
                 <SizePicker setVariant={setSelectedVariant} curr={selectedVariant} all={product.all_variants} /> :
                 null  
               }
-              <Button variant="contained" size='big'>Add to Cart</Button>
+              <Button onClick={handleAddToCart} variant="contained" size='big'>Add to Cart</Button>
             </div>
           </div>
           <h3 className="descHeader">Description</h3>

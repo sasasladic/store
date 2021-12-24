@@ -1,5 +1,5 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
-
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 
 const initialValue = {
@@ -35,34 +35,72 @@ const authSlice = createSlice({
   }
 });
 
-// const authInitialValue = {
-//   isLoggedIn: false,
-//   isAdmin: false
-// }
-// const authSlice = createSlice({
-//   name: 'authentication',
-//   initialState: authInitialValue,
-//   reducers: {
-//     toggleLogIn(state) {
-//       state.isLoggedIn = !state.isLoggedIn;
-//     },
-//     toggleAdmin(state) {
-//       state.isAdmin = !state.isAdmin;
-//     }
-//   }
-// });
+const cartInitialValue = {
+  cartLength: 0,
+  cartData: {}
+}
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState: cartInitialValue,
+  reducers: {
+    addItem(state, action) {
+      state.cartData = {
+        ...state.cartData,
+      }
+      // checking if the item is already added, if it is, just increase the counter
+      let isNew = true;
+      Object.keys(state.cartData).forEach(key => {
+        if (key === String(action.payload.id)) {
+          isNew = false;
+        }
+      });
+      if (isNew) {
+        state.cartData[action.payload.id] = {count: 1, name: action.payload.name, price: action.payload.price, img: action.payload.img}
+      } else {
+        state.cartData[action.payload.id] = {count: state.cartData[action.payload.id]['count'] + 1, name: action.payload.name, price: action.payload.price, img: action.payload.img}
+      }
+      state.cartLength = Object.keys(state.cartData).length;
+    },
+    removeItem(state, action) {
+      state.cartData = { ...state.cartData };
+      const id = action.payload.id;
+      if (state.cartData[id]) {
+        if (state.cartData[id].count !== 1) {
+          state.cartData[id].count -= 1;
+        } else {
+          delete state.cartData[id];
+        }
+      }
+      state.cartLength = Object.keys(state.cartData).length;
+    },
+    removeAllItems(state, action) {
+      state.cartData = { ...state.cartData };
+      delete state.cartData[action.payload.id];
+      state.cartLength = Object.keys(state.cartData).length;
+    },
+    emptyCart(state) {
+      state.Lenght = 0;
+      state.cartData = {};
+    }
+  }
+});
 
 
 
 const store = configureStore({
   reducer: {
     general: generalSlice.reducer,
-    auth: authSlice.reducer
-  }
+    auth: authSlice.reducer,
+    cart: cartSlice.reducer
+  },
+  middleware: getDefaultMiddleware({serializableCheck: false})
 })
+
+
 
 export const generalActions = generalSlice.actions;
 export const authActions = authSlice.actions;
-// export const authenticationActions = authSlice.actions;
+export const cartActions = cartSlice.actions;
+
 
 export default store;
