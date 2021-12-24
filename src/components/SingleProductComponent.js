@@ -2,6 +2,7 @@ import { CircularProgress, Button } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect, Fragment } from "react";
 import { Carousel } from "react-responsive-carousel";
+import SizePicker from "./SingleProductSub/SizePicker";
 import ColorPicker from "./SingleProductSub/ColorPicker";
 
 const SingleProductComponent = () => {
@@ -62,7 +63,7 @@ const SingleProductComponent = () => {
               <p className="price">{selectedVariant.price} €</p>
               <p className="promoText">This product is excluded from all promotional discounts and offers.</p>
               {sizeExists ? 
-                'size does matter' :
+                <SizePicker setVariant={setSelectedVariant} curr={selectedVariant} all={product.all_variants} /> :
                 null  
               }
               <Button variant="contained" size='big'>Add to Cart</Button>
@@ -72,7 +73,7 @@ const SingleProductComponent = () => {
           <p className="descText">{product.product_data.description}</p>
         </Fragment>
         :
-      <CircularProgress />}
+      <div style={{padding: '30vh 0', display: 'flex', justifyContent: 'center'}}><CircularProgress /></div>}
     </div>
   </div>
 }

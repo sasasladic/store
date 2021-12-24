@@ -8,7 +8,13 @@ const ColorPicker = ({curr, all, setVariant}) => {
     const color = e.target.id;
     all.forEach(variant => {
       if (variant.color === color && variant.size === curr.size) {
-        setVariant(variant)
+        setVariant(variant);
+      }
+    });
+    // if other color doesnt have currently selected size, just change color to first available size
+    all.forEach(variant => {
+      if (variant.color === color) {
+        setVariant(variant);
       }
     });
   }

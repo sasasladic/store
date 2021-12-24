@@ -1,6 +1,23 @@
 const SizePicker = ({curr, all, setVariant}) => {
+
+  const color = curr.color;
+  const sizes = [];
+  const sizesDom = [];
+
+  all.forEach(variant => {
+    if (variant.color === color) {
+      sizes.push(variant.size);
+    }
+  })
+  sizes.forEach(size => {
+    sizesDom.push(<div id={size} key={size} className={size === curr.size ? 'active sizeItem' : 'sizeItem'}>{size}</div>)
+  })
+
   return <div className="sizePicker">
-    
+    <p className="label">Select size</p>
+    <div className="sizeContainer">
+      {sizesDom}
+    </div>
   </div>
 }
 

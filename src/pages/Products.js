@@ -12,7 +12,7 @@ const Products = () => {
   const [data, setData] = useState(null);
   const user = useSelector(state => state.auth.user);
   const [productsData, setProductsData] = useState(null);
-  const [sortPrice, setSortPrice] = useState(false);
+  const [sortPrice, setSortPrice] = useState('fromTop');
 
   let categorie = window.location.href.split('/')[window.location.href.split('/').length - 1];
   const gender = categorie[0] == 'm' ? 'Male' : 'Female';
