@@ -15,6 +15,8 @@ const CartComponent = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
   const cart = useSelector(state => state.cart.cartLength);
+  const user = useSelector(state => state.auth)
+  console.log(user);
 
   const handleNext = () => {
     let newSkipped = skipped;
@@ -32,7 +34,7 @@ const CartComponent = () => {
 
   return <div className='cart'>
     <div className="subheader">
-      <h3 className="subheaderInner">Korpa</h3>
+      <h1 className="subheaderInner">Cart</h1>
     </div>
     <div className='cartInner'>
       <div className="stepper">

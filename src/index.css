@@ -56,6 +56,9 @@ a{
   max-width: 1200px;
   margin: 0 auto;
 }
+.subheaderInner h1, h1.subheaderInner{
+  font-size: 27px;
+}
 div.hide{
   display: none;
 }

@@ -64,6 +64,8 @@ const ProductConfirm = () => {
     totalPrice += cartData[key].count * cartData[key].price;
   })
 
+  console.log(totalPrice);
+
   return <div className='productConfirm'>
     <h2>Your Cart</h2>
     <div className='gridList'>
