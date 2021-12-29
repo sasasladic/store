@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { useState } from "react";
 import { Box, Stepper, Step, Button, StepLabel } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -7,16 +7,26 @@ import BuyersInformation from "./BuyersInformation";
 import Payment from "./Payment";
 import Confirmation from "./Confirmation";
 
-const steps = ['Potvrda proizvoda', 'Vaše informacije', 'Plaćanje', 'Potvrda'];
-const stepsComponents = [<ProductConfirm />, <BuyersInformation />, <Payment />, <Confirmation />];
+const steps = ['Product confirm', 'Your informations', 'Payment', 'Confirmation'];
 
 const CartComponent = () => {
-
+  
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
   const cart = useSelector(state => state.cart.cartLength);
   const user = useSelector(state => state.auth)
-  console.log(user);
+  const [address, setAddress] = useState(''); 
+  
+  let nextIsDisabled = false;
+  if (activeStep === 0 && !cart) { nextIsDisabled = true; }
+  if (activeStep == 1 && !address) { nextIsDisabled = true;}
+
+  
+  const stepsComponents = [<ProductConfirm />, <BuyersInformation addressInfo={address} setAddressInfo={setAddress}/>, <Payment />, <Confirmation />];
+
+  if (activeStep === 1) {
+    console.log('check');
+  }
 
   const handleNext = () => {
     let newSkipped = skipped;
@@ -67,11 +77,11 @@ const CartComponent = () => {
                   sx={{ mr: 1 }}
                   variant='outlined'                    
                 >
-                  Nazad
+                  Back
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
-                <Button disabled={!cart ? true : false} variant='contained' onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Završi' : 'Nastavi'}
+                <Button disabled={nextIsDisabled} variant='contained' onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
                 </Button>
               </Box>
             </Fragment>

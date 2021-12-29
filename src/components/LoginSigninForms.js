@@ -99,7 +99,7 @@ const LoginSigninForms = () => {
       <Button disableElevation onClick={ handleLogin } variant='contained' style={{alignSelf: "flex-end", marginTop: 20}}>Submit</Button>
     </div>
     <div className="profile-signup">
-      <h3>Don't have account? Signup</h3>
+      <h3>Don't have account? Register</h3>
       <TextField inputRef={name} size='small' margin='normal' label='Name' type='outlined'></TextField>
       <TextField inputRef={surname} size='small' margin='normal' label='Surname' type='outlined'></TextField>
       <TextField inputRef={email} size='small' margin='normal' label='E-mail' type='outlined'></TextField>

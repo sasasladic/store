@@ -14,12 +14,12 @@ const ProductCard = ({ img, name, id, price }) => {
   return <div className='productCard'>
     <Link to={`/singleProduct/${id}`}><div className='productCard-image'>
       <img src={img} alt={name} />
-    </div></Link>
-    <div className='productCard-description'>
-      <Link to={`/singleProduct/${id}`}><h4>{name}</h4></Link>
       <span className="price">{price}€</span>
-      <Button onClick={handleAddToCart} size='small' variant='contained' disableElevation >add to cart</Button>
     </div>
+    <div className='productCard-description'>
+      <h4 style={{fontWeight: 'normal'}}>{name}</h4>
+    </div>
+    </Link>
   </div>
 }
 

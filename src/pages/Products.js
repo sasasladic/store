@@ -54,7 +54,7 @@ const Products = () => {
     setProductsData(null);
     let url = `https://api.orders.galeja.net/api/product?category_gender_id=${categorie}`;
     if (categorie === 'ALL') {
-      url = `https://api.orders.galeja.net/api/product?filter[genders.gender]=${gender}`;
+      url = `https://api.orders.galeja.net/api/product?filter[gender]=${gender}`;
     }
     axios.get(url).then(res => {
       setProductsData(res.data.data);

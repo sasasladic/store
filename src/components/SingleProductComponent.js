@@ -14,9 +14,10 @@ const SingleProductComponent = () => {
   const [sizeExists, setSizeExists] = useState(false);
   const [colorExists, setColorExists] = useState(false);
 
+  
   const dispatch = useDispatch();
   const handleAddToCart = () => {
-    dispatch(cartActions.addItem({ id: product.product_data.id, name: product.product_data.name, img: product.product_data.images[0].src, price: product.product_data.price}));
+    dispatch(cartActions.addItem({ id: selectedVariant.id, name: product.product_data.name, img: product.product_data.images[0].src, price: selectedVariant.price}));
   }
 
   // If product is loaded, set selected variant to first one

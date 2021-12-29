@@ -28,6 +28,7 @@
   padding: 40px 20px;
   display: flex;
   justify-content: space-around;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 .allProducts .productsList .productCard{
@@ -46,7 +47,6 @@
 .singleProduct{
   border-top: 1px solid gray;
   background-color: #EBEEEF;
-
 }
 .singleProduct h1{
   text-decoration: underline;
@@ -107,7 +107,9 @@
 }
 .singleProduct .sizePicker .sizeItem{
   width: 25%;
-  border: 1px solid rgb(211, 211, 211);
+  outline: 1px solid rgb(211, 211, 211); /* use instead of border */
+  margin-top: 1px;
+  margin-left: 1px;
   text-align: center;
   padding: 10px 0;
 }
