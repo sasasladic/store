@@ -51,10 +51,6 @@ const BuyersInformation = ({ addressInfo, setAddressInfo}) => {
     }
   }
 
-  // const addressConfirmHandler = () => {
-    
-  // }
-
   const dispatch = useDispatch();
   const logoutHandler = () => {
     dispatch(authActions.logout());

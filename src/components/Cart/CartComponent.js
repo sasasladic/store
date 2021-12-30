@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import { Fragment } from "react";
 import { useState } from "react";
 import { Box, Stepper, Step, Button, StepLabel } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -15,14 +15,15 @@ const CartComponent = () => {
   const [skipped, setSkipped] = useState(new Set());
   const cart = useSelector(state => state.cart.cartLength);
   const user = useSelector(state => state.auth)
-  const [address, setAddress] = useState(''); 
+  const [address, setAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('onDelivery');
   
   let nextIsDisabled = false;
   if (activeStep === 0 && !cart) { nextIsDisabled = true; }
   if (activeStep == 1 && !address) { nextIsDisabled = true;}
 
   
-  const stepsComponents = [<ProductConfirm />, <BuyersInformation addressInfo={address} setAddressInfo={setAddress}/>, <Payment />, <Confirmation />];
+  const stepsComponents = [<ProductConfirm />, <BuyersInformation addressInfo={address} setAddressInfo={setAddress} />, <Payment value={paymentMethod} setValue={setPaymentMethod} />, <Confirmation address={address} />];
 
   if (activeStep === 1) {
     console.log('check');
@@ -50,7 +51,7 @@ const CartComponent = () => {
       <div className="stepper">
         <Box sx={{ width: '100%' }}>
           <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => {
+            {steps.map((label) => {
               const stepProps = {};
               const labelProps = {};
               return (

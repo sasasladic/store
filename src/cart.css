@@ -8,6 +8,7 @@
 .cartInner{
   max-width: 1200px;
   width: 100%;
+  min-height: 50vh;
   margin: 0 auto;
   padding: 20px;
   display: flex;
@@ -171,6 +172,40 @@
 }
 
 
+/* PAYMENT */
+.payment{
+  padding: 20px;
+}
+.payment h2{
+  margin-bottom: 20px;
+}
+.payment .inputContainer{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+/* CONFIRMATION */
+.confirmation{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.confirmation button{
+  width: 40%;
+  align-self: center;
+}
+.confirmation h2{
+  text-align: center;
+  margin: 15px 0;
+}
+
+
 @media screen and (max-width: 1000px){
   .productConfirm .total{
     width: 100%;
@@ -182,6 +217,10 @@
   }
   .productConfirm .listItem, .productConfirm .placeholder{
     display: none;
+  }
+
+  .buyersInfo .inputContainer, .payment .inputContainer{
+    width: 100%;
   }
   
 }
