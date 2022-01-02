@@ -5,13 +5,9 @@ import maleImage from '../assets/male.jpg'
 import femaleImage from '../assets/female.jpg'
 import ProductCard from "./ProductCard";
 
-import { useSelector } from "react-redux";
 
 
 const FeaturedProducts = ({products}) => {
-
-  const cart = useSelector(state => state.cart);
-  console.log(cart);
 
   
   let allProducts;

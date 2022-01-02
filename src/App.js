@@ -24,7 +24,7 @@ function App() {
         }
       }).then(res => {
         console.log('%cLogin successful', 'color:green');
-        dispatch(authActions.login({ user: res.data.data }));
+        dispatch(authActions.login({ user: {...res.data.data, token: token} }));
       }).catch(() => {
         console.log('%cLogin failed', 'color: red');
       })

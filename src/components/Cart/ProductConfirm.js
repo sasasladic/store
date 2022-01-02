@@ -10,7 +10,6 @@ const ProductConfirm = () => {
 
   const cartData = useSelector(state => state.cart.cartData);
   const cartKeys = Object.keys(useSelector(state => state.cart.cartData));
-  console.log(cartData);
   const dispatch = useDispatch();
   let totalPrice = 0;
 
@@ -64,7 +63,6 @@ const ProductConfirm = () => {
     totalPrice += cartData[key].count * cartData[key].price;
   })
 
-  console.log(cartData);
 
   return <div className='productConfirm'>
     <h2>Your Cart</h2>

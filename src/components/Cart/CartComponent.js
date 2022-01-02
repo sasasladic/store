@@ -6,11 +6,13 @@ import ProductConfirm from "./ProductConfirm";
 import BuyersInformation from "./BuyersInformation";
 import Payment from "./Payment";
 import Confirmation from "./Confirmation";
+import { useHistory } from "react-router-dom";
 
 const steps = ['Product confirm', 'Your informations', 'Payment', 'Confirmation'];
 
 const CartComponent = () => {
   
+  const history = useHistory();
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
   const cart = useSelector(state => state.cart.cartLength);
@@ -25,12 +27,12 @@ const CartComponent = () => {
   
   const stepsComponents = [<ProductConfirm />, <BuyersInformation addressInfo={address} setAddressInfo={setAddress} />, <Payment value={paymentMethod} setValue={setPaymentMethod} />, <Confirmation address={address} />];
 
-  if (activeStep === 1) {
-    console.log('check');
-  }
 
   const handleNext = () => {
     let newSkipped = skipped;
+    if (activeStep === 3) {
+      history.push('/')
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -82,7 +84,7 @@ const CartComponent = () => {
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
                 <Button disabled={nextIsDisabled} variant='contained' onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
+                  {activeStep === steps.length - 1 ? 'Back to Shop' : 'Continue'}
                 </Button>
               </Box>
             </Fragment>
