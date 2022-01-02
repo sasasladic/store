@@ -1,0 +1,82 @@
+/* CONTACT STYLES */
+.contact{
+  width: 100%;
+  background: rgb(250,250,250);
+  background: linear-gradient(360deg, rgba(250,250,250,1) 0%, rgb(212, 220, 255) 100%);
+}
+.contact .description{
+  border-top: 1px solid rgb(0, 0, 0);
+  background-color: #003c4d;
+  color: whitesmoke;
+  border-bottom: 1px solid rgb(114, 114, 114);
+  padding: 20px 0;
+}
+.contact h1 {
+  text-align: center;
+  color: whitesmoke;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.contactInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 200px);
+  align-items: center;
+}
+.contactInfo, .message{
+  margin: 20px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.message h3, .contactInfo h3{
+  text-decoration: underline;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.contactInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contactInfo p{
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  opacity: .6;
+}
+.contactInfo p svg{
+  margin-right: 6px;
+}
+.contactInfo a{
+  text-decoration: underline;
+  color: rgb(75, 75, 255);
+  font-size: 24px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.contactInfo a.noMargin{
+  margin: 0;
+}
+.message .input{
+  margin: 15px 0;
+  width: 100%;
+}
+.message button{
+  margin-top: 15px;
+}
+
+
+@media screen and (max-width: 1000px){
+  .contactInfo, .message{
+    width: 100%;
+  }
+}

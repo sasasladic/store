@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import './allProducts.css';
-import './cart.css'
+import './css/index.css';
+import './css/allProducts.css';
+import './css/cart.css'
+import './css/contact.css';
 import App from './App';
 import { Provider } from 'react-redux'
 import store from './context/Context.js';

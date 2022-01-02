@@ -1,7 +1,10 @@
 import Navbar from "../components/Navbar"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
+import ContactContainer from "../components/Contact/ContactContainer"
+
+
 const Contact = () => {
 
   const [data, setData] = useState(null);
@@ -20,7 +23,7 @@ const Contact = () => {
       :
       <Navbar genders={null}></Navbar>
     }
-    <h1>Contact</h1>
+    <ContactContainer></ContactContainer>
     <Footer></Footer>
   </div>
 }
