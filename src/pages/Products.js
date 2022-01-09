@@ -1,18 +1,17 @@
 import Navbar from "../components/Navbar";
 import { useState, useEffect, Fragment } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, MenuItem, Select } from '@mui/material'
 import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
-import FiltersComponent from "../components/FiltersComponent";
+import Filter from "../components/Products/Filter";
 
 const Products = () => {
 
   const [data, setData] = useState(null);
-  const user = useSelector(state => state.auth.user);
   const [productsData, setProductsData] = useState(null);
-  const [sortPrice, setSortPrice] = useState('fromTop');
+  const [filterArr, setFilterArr] = useState({});
+  const [sort, setSort] = useState({price: '', time: ''});
 
   let categorie = window.location.href.split('/')[window.location.href.split('/').length - 1];
   const gender = categorie[0] == 'm' ? 'Male' : 'Female';
@@ -20,15 +19,18 @@ const Products = () => {
   categorie = categorie.slice(1);
 
 
+  const LoadFilters = ({data}) => {
+    // loading filters
+    const filtersDom = [];
+    Object.keys(data.filters).forEach((filter, i) => {
+      filtersDom.push(<Filter gender={gender} great={filterArr} key={i} set={setFilterArr} data={data} filter={filter} i={i}></Filter>)
+    });
+
+    return filtersDom;
+  }
+
   const LoadProductItems = ({ data }) => {
     let allProducts = [];
-    // sorting products by price
-    if (sortPrice === 'fromTop'){
-      data.products.sort((a, b) => (a.price > b.price) ? -1 : 1);
-    }
-    if (sortPrice === 'fromBottom') {
-      data.products.sort((a, b) => (a.price > b.price) ? 1 : -1);
-    }
 
     if (data.length !== 0) {       
       allProducts = data['products'].map(product => {
@@ -38,7 +40,6 @@ const Products = () => {
 
     return allProducts.length ? <Fragment>{allProducts}</Fragment> : <p>There are no items in selected categorie</p>;
   }
-
 
   // loading hover menu
   useEffect(() => {
@@ -52,16 +53,26 @@ const Products = () => {
   // loading page data
   useEffect(() => {
     setProductsData(null);
-    let url = `https://api.orders.galeja.net/api/product?category_gender_id=${categorie}`;
+    let filterString = '';
+    Object.keys(filterArr).forEach(key => {
+      filterString += filterArr[key];
+    })
+    let url = `https://api.orders.galeja.net/api/product?category_gender_id=${categorie}${filterString}`;
     if (categorie === 'ALL') {
-      url = `https://api.orders.galeja.net/api/product?filter[gender]=${gender}`;
+      url = `https://api.orders.galeja.net/api/product?filter[gender]=${gender}${filterString}`;
     }
     axios.get(url).then(res => {
       setProductsData(res.data.data);
+      console.log(res.data.data);
     }).catch(err => {
       console.log(err);
     });
-  }, [categorie, gender]);
+  }, [categorie, gender, filterArr]);
+
+  useEffect(() => {
+    setFilterArr({})
+  }, [gender, categorie])
+
 
   return <div className="allProducts">
     {data ?
@@ -74,7 +85,9 @@ const Products = () => {
       { productsData && productsData.category ? <h2 className="categorieName">{productsData.category.name}</h2> : null}
       { productsData && productsData.category ? <p className="descriptionText">{productsData.category.description}</p> : null }
     </div>
-    <FiltersComponent sortPrice={sortPrice} setSortPrice={setSortPrice}></FiltersComponent>
+    <div className="filters">
+      { productsData && <LoadFilters data={productsData} /> }
+    </div>
     <div className="productsList">
       {productsData ? <LoadProductItems data={productsData}/> : <div className="spinnerContainer"><CircularProgress /></div> }
     </div>
