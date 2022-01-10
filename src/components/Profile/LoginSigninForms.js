@@ -2,7 +2,7 @@ import {TextField, Button, Alert, AlertTitle} from "@mui/material";
 import axios from "axios";
 import { useRef, useState } from "react";
 
-import { authActions } from '../context/Context';
+import { authActions } from '../../context/Context';
 import { useDispatch } from "react-redux";
 
 import { Box } from "@mui/system";
