@@ -180,9 +180,17 @@ section.newsletter{
   background-color: #96c21d;
 }
 
-.filters {
-  padding: 10px;
+.allProducts .propertiesCont{
   border-bottom: 1px solid rgb(204, 204, 204);
+}
+.allProducts .properties{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.filters {
 }
 
 

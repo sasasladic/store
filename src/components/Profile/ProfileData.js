@@ -7,7 +7,7 @@ const ProfileData = () => {
 
   const [dom, setDom] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sort, setSort] = useState('last_updated')
+  const [sort, setSort] = useState('last_updated');
 
   const sortHandler = (e) => {
     setSort(e.target.value);

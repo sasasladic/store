@@ -5,13 +5,14 @@ import { CircularProgress, MenuItem, Select } from '@mui/material'
 import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
 import Filter from "../components/Products/Filter";
+import Sort from '../components/Products/Sort'
 
 const Products = () => {
 
   const [data, setData] = useState(null);
   const [productsData, setProductsData] = useState(null);
   const [filterArr, setFilterArr] = useState({});
-  const [sort, setSort] = useState({price: '', time: ''});
+  const [sort, setSort] = useState('sort');
 
   let categorie = window.location.href.split('/')[window.location.href.split('/').length - 1];
   const gender = categorie[0] == 'm' ? 'Male' : 'Female';
@@ -61,13 +62,16 @@ const Products = () => {
     if (categorie === 'ALL') {
       url = `https://api.orders.galeja.net/api/product?filter[gender]=${gender}${filterString}`;
     }
+    if (sort !== 'sort') {
+      url += `&sort=${sort}`;
+    }
     axios.get(url).then(res => {
       setProductsData(res.data.data);
       console.log(res.data.data);
     }).catch(err => {
       console.log(err);
     });
-  }, [categorie, gender, filterArr]);
+  }, [categorie, gender, filterArr, sort]);
 
   useEffect(() => {
     setFilterArr({})
@@ -85,8 +89,13 @@ const Products = () => {
       { productsData && productsData.category ? <h2 className="categorieName">{productsData.category.name}</h2> : null}
       { productsData && productsData.category ? <p className="descriptionText">{productsData.category.description}</p> : null }
     </div>
-    <div className="filters">
-      { productsData && <LoadFilters data={productsData} /> }
+    <div className="propertiesCont">
+      <div className="properties">
+        <div className="filters">
+          {productsData && <LoadFilters data={productsData} />}
+        </div>
+        <Sort sort={sort} setSort={setSort}></Sort>
+      </div>
     </div>
     <div className="productsList">
       {productsData ? <LoadProductItems data={productsData}/> : <div className="spinnerContainer"><CircularProgress /></div> }
