@@ -79,6 +79,7 @@ div.hide{
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .miniHeader svg{
   margin-right: 10px;
@@ -103,6 +104,9 @@ div.hide{
 .miniHeader-profile:hover{
   color: #fafafa;
   background-color: rgba(255, 255, 255, 0.164);
+}
+.miniHeader .left{
+  display: flex;
 }
 
 /* HOVER CONTAINER STYLES */

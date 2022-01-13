@@ -47,7 +47,7 @@ const Filter = ({data, filter, set, i, great, gender}) => {
     if (filter === 'categories') {
       data.filters[filter].forEach(opt => {
         const color = opt.gender == 2 ? 'orange' : 'blue';
-        if ((gender === 'Male' && opt.gender == 3) || (gender === 'Female' && opt.gender == 2)) {
+        if ((gender === 'Male' && opt.gender == 3) || (gender === 'Female' && opt.gender == 2) || !gender) {
           optionsTemp.push(<MenuItem style={{display: 'flex', justifyContent: 'space-between'}} key={opt.name} value={opt.name}>{opt.name} <span style={{fontWeight: 'bold', color: color}}>{opt.gender == 2 ? 'F' : 'M'}</span></MenuItem>)
         }
       })

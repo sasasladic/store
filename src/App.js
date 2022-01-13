@@ -6,6 +6,7 @@ import Profile from './pages/Profile'
 import Products from './pages/Products';
 import SingleProduct from './pages/SingleProduct';
 import Contact from './pages/Contact';
+import Search from './pages/Search';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -41,6 +42,7 @@ function App() {
         <Route exact path='/products/:categorie' component={Products}></Route>
         <Route exact path='/singleProduct/:id' component={SingleProduct}></Route>
         <Route exact path='/contact' component={Contact}></Route>
+        <Route exact path='/search/:searchTerm' component={Search}></Route>
       </Switch>
     </Router>
   );
