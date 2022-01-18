@@ -108,6 +108,12 @@ div.hide{
 .miniHeader .left{
   display: flex;
 }
+.miniHeader .right label.MuiInputLabel-root{
+  color: rgba(255,255,255,0.6);
+}
+.miniHeader .right fieldset{
+  border-color: rgb(255 255 255 / 23%);
+}
 
 /* HOVER CONTAINER STYLES */
 .hoverContainer{
@@ -140,7 +146,13 @@ header #linkFemale:hover + .femaleHoverContainer{
 header .categorie{
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  margin-right: 20px;
+  padding-right: 20px;
+  padding-left: 10px;
+  border-right: 1px solid grey;
+}
+header .categorie:last-child{
+  border: none;
 }
 header .hovCont{
   max-width: 1200px;
@@ -156,6 +168,16 @@ header .hovCont p:hover, header .hovCont h3:hover{
   cursor: pointer;
   text-decoration: underline;
 }
+header .hovCont p{
+  font-size: 18px;
+  opacity: .8;
+}
+header .hovCont h3{
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 6px;
+}
 
 
 header {
@@ -163,6 +185,7 @@ header {
   height: 160px;
   width: 100%;
   padding-top: 50px;
+  position: relative;
 }
 .navbarInner {
   max-width: 1200px;
@@ -178,11 +201,19 @@ header {
   display: flex;
   flex-direction: column;
 }
+.logoFixed{
+  height: 80px;
+  position: absolute;
+  top: 65px; left: -10px;
+  
+}
 
 .navbarInner-links-router{
   flex-grow: 1;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
 }
 .navbarInner-links-router ul{
   display: flex;
@@ -202,9 +233,9 @@ header {
 .navbarInner-links-router ul li a{
   color: var(--textColor);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: normal;
   font-size: 26px;
-  letter-spacing: -1.3px;
+  letter-spacing: 0px;
   transition: 200ms;
 }
 .navbarInner-links-social{
@@ -305,6 +336,19 @@ header {
 .cartButton:hover{
   cursor: pointer;
   background-color: rgb(11, 130, 228);
+}
+.cartButton .badge{
+  background-color: red;
+  color: white;
+  border-radius: 100%;
+  width: 30px; height: 30px;
+  font-size: 21px;
+  font-weight: bold;
+  position: absolute;
+  right: -12px; top: -12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -528,6 +572,11 @@ header {
   opacity: 1;
 }
 
+@media screen and (max-width: 1400px){
+  .logoFixed{
+    left: calc(50vw - 56px);
+  }
+}
 /* mobile  */
 @media screen and (max-width: 1000px){
 
@@ -538,9 +587,16 @@ header {
     text-align: center;
   }
 
+  .logoFixed{
+    height: 60px;
+    top: 57px;
+  }
 
   .miniHeaderInner{
     justify-content: space-around;
+  }
+  .miniHeader .right{
+    display: none;
   }
 
   header {

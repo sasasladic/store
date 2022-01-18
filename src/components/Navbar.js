@@ -1,6 +1,9 @@
-import { Fragment, useLayoutEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import logo from '../assets/logo.png'
+import { useLayoutEffect, useState, Fragment, useRef } from "react";
+import {TextField} from '@mui/material'
+import { Link, useHistory } from "react-router-dom";
+import { InputAdornment } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
+import logoImg from '../img/logo.png'
 import getWidth from "../helperFunctions/getWidth";
 import MiniHeader from "./MiniHeader";
 import { Box, CircularProgress } from '@mui/material'
@@ -10,7 +13,21 @@ import MaleHoverContainer from "./hoverContainers/MaleHoverContainer";
 const Navbar = ({genders}) => {
 
   const [isMobile, setIsMobile] = useState(false);
+  const history = useHistory();
+  const searchRef = useRef();
 
+  const searchHandler = () => {
+    if (searchRef.current.value !== '') {
+      history.push(`/search/${searchRef.current.value}`);
+    }
+  }
+
+  const textHandler = (e) => {
+    const code = e.keyCode ? e.keyCode : e.which;
+    if (code === 13) {
+      searchHandler();
+    }
+  }
   // checking if it is mobile
   useLayoutEffect(() => {
     if (getWidth() < 1000) {
@@ -93,39 +110,40 @@ const Navbar = ({genders}) => {
               <span>MENU</span>
             </div>
               :
-            <ul className='desktopMenuContainer'>
-              <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
-              <li id='linkMale' className={pathname.slice(0, 11) === '/products/m' ? 'active' : ''}><Link to='/products/mALL'>
-                MEN
-              </Link></li>
-              <div className='maleHoverContainer hoverContainer hide'>
-                {genders ?
-                  <MaleHoverContainer data={ genders[0].categories}/>
-                  :
-                  <Box sx={{ display: 'flex', margin: '40px' }}>
-                    <CircularProgress />
-                  </Box>
-                }
-              </div>
-              <li id='linkFemale' className={pathname.slice(0, 11) === '/products/f' ? 'active' : ''}><Link to='/products/fALL'>
-                WOMEN
-              </Link></li>
-              <div className='femaleHoverContainer hoverContainer hide'>
-                {genders ?
-                  <FemaleHoverContainer data={ genders[1].categories} />
-                  :
-                  <Box sx={{ display: 'flex', margin: '40px' }}>
-                    <CircularProgress />
-                  </Box>
-                }
-              </div>
-              <li className={pathname === '/contact' ? 'active' : ''}><Link to='/contact'>CONTACT</Link></li>
-            </ul>}
-    
+            <Fragment>
+              <ul className='desktopMenuContainer'>
+                <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
+                <li id='linkMale' className={pathname.slice(0, 11) === '/products/m' ? 'active' : ''}><Link to='/products/mALL'>
+                  MEN
+                </Link></li>
+                <div className='maleHoverContainer hoverContainer hide'>
+                  {genders ?
+                    <MaleHoverContainer data={ genders[0].categories}/>
+                    :
+                    <Box sx={{ display: 'flex', margin: '40px' }}>
+                      <CircularProgress />
+                    </Box>
+                  }
+                </div>
+                <li id='linkFemale' className={pathname.slice(0, 11) === '/products/f' ? 'active' : ''}><Link to='/products/fALL'>
+                  WOMEN
+                </Link></li>
+                <div className='femaleHoverContainer hoverContainer hide'>
+                  {genders ?
+                    <FemaleHoverContainer data={ genders[1].categories} />
+                    :
+                    <Box sx={{ display: 'flex', margin: '40px' }}>
+                      <CircularProgress />
+                    </Box>
+                  }
+                </div>
+                <li className={pathname === '/contact' ? 'active' : ''}><Link to='/contact'>CONTACT</Link></li>
+                </ul>
+                <TextField style={{marginBottom: 10}} size='small' color='primary' className='searchField' label='Search' inputRef={searchRef} InputProps={{ endAdornment: (<InputAdornment position="end"><SearchIcon onClick={searchHandler}></SearchIcon></InputAdornment>)}} onKeyDown={textHandler}></TextField>
+            </Fragment>
+            }
+            <img className="logoFixed" src={logoImg} alt="react logo" />
           </div>
-        </div>
-        <div className='navbarInner-logo'>
-          <img src={logo} alt="Logo" />
         </div>
       </div>
     </header>

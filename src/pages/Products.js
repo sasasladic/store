@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard'
 import Footer from '../components/Footer'
 import Filter from "../components/Products/Filter";
 import Sort from '../components/Products/Sort'
+import CartButton from "../components/CartButton";
 
 const Products = () => {
 
@@ -100,6 +101,7 @@ const Products = () => {
     <div className="productsList">
       {productsData ? <LoadProductItems data={productsData}/> : <div className="spinnerContainer"><CircularProgress /></div> }
     </div>
+    <CartButton></CartButton>
     <Footer></Footer>
   </div>
 }

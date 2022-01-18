@@ -7,10 +7,10 @@ const MaleHoverContainer = ({ data }) => {
   categories.forEach(cat => {
     const subcategoriesDom = [];
     cat.children.forEach(child => {
-      subcategoriesDom.push(<p key={child.name}><Link to={`/products/m${child.category_gender_id}`}>{child.name}</Link></p>);
+      subcategoriesDom.push(<p key={child.name}><Link style={{color: '#2E2E2E'}} to={`/products/m${child.category_gender_id}`}>{child.name}</Link></p>);
     })
     categoriesDom.push(<div className='categorie' key={cat.name}>
-      <h3><Link to={`/products/m${cat.category_gender_id}`}>{cat.name}</Link></h3>
+      <h3><Link style={{color: '#2E2E2E'}} to={`/products/m${cat.category_gender_id}`}>{cat.name}</Link></h3>
       {subcategoriesDom}
     </div>)
   })

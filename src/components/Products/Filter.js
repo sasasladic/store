@@ -3,7 +3,6 @@ import { useState } from "react";
 import { MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 
 const Filter = ({data, filter, set, i, great, gender}) => {
-
   let filterAlready = '';
   if (great[i]) {
     filterAlready = great[i].split('=')[1];
@@ -12,7 +11,7 @@ const Filter = ({data, filter, set, i, great, gender}) => {
   const [filterState, setFilterState] = useState(startingState1);
   const [options, setOptions] = useState(null);
   
-  console.log(great);
+  console.log(gender);
   
   useEffect(() => {
     if (filterState !== filter) {
@@ -46,9 +45,9 @@ const Filter = ({data, filter, set, i, great, gender}) => {
     const optionsTemp = [];
     if (filter === 'categories') {
       data.filters[filter].forEach(opt => {
-        const color = opt.gender == 2 ? 'orange' : 'blue';
-        if ((gender === 'Male' && opt.gender == 3) || (gender === 'Female' && opt.gender == 2) || !gender) {
-          optionsTemp.push(<MenuItem style={{display: 'flex', justifyContent: 'space-between'}} key={opt.name} value={opt.name}>{opt.name} <span style={{fontWeight: 'bold', color: color}}>{opt.gender == 2 ? 'F' : 'M'}</span></MenuItem>)
+        const color = gender == 'Male' ? 'blue' : 'orange';
+        if ((gender === 'Male' && opt.gender == 1) || (gender === 'Female' && opt.gender == 2) || !gender || opt.gender == 3) {
+          optionsTemp.push(<MenuItem style={{display: 'flex', justifyContent: 'space-between'}} key={opt.name} value={opt.name}>{opt.name} <span style={{fontWeight: 'bold', color: color}}>{gender == 'Male' ? 'M' : 'F'}</span></MenuItem>)
         }
       })
       optionsTemp.push(<MenuItem style={{ display: 'flex', justifyContent: 'space-between' }} key={'special'} value={filter}><span style={{opacity: '0.6'}}>{filter}</span></MenuItem>)
@@ -65,7 +64,7 @@ const Filter = ({data, filter, set, i, great, gender}) => {
     setFilterState(e.target.value)
   }
 
-  return <FormControl style={{margin: '0 10px'}}>
+  return <FormControl style={{margin: '10px 10px 0 10px'}}>
     <InputLabel>{filter}</InputLabel>
     <Select value={filterState} label={filter} onChange={changeHandler}>
       {options}

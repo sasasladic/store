@@ -26,11 +26,13 @@ const ProfileData = () => {
       const domTemp = [];
       data.forEach((item, i) => {
         const statusColor = item.status === 'ordered' ? 'green' : 'orange';
+        console.log(item);
         domTemp.push(<TableRow key={i}>
+          <TableCell>{item.variant.sku}</TableCell>
+          <TableCell>{item.variant.size} - {item.variant.color}</TableCell>
           <TableCell>{item.sum}€</TableCell>
           <TableCell>{item.quantity}</TableCell>
           <TableCell>{item.ordered_at.substring(0, 10)}</TableCell>
-          <TableCell>{item.address}</TableCell>
           <TableCell style={{ color: statusColor }}>{item.status}</TableCell>
         </TableRow>);
       })
@@ -59,10 +61,11 @@ const ProfileData = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell style={{fontWeight: 'bold'}}>Name</TableCell>
+              <TableCell style={{fontWeight: 'bold'}}>Attributes</TableCell>
               <TableCell style={{fontWeight: 'bold'}}>Price</TableCell>
-              <TableCell style={{fontWeight: 'bold'}}>Items</TableCell>
+              <TableCell style={{fontWeight: 'bold'}}>Quantity</TableCell>
               <TableCell style={{fontWeight: 'bold'}}>Order Date</TableCell>
-              <TableCell style={{fontWeight: 'bold'}}>Address</TableCell>
               <TableCell style={{fontWeight: 'bold'}}>Status</TableCell>
             </TableRow>
           </TableHead>

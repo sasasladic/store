@@ -7,56 +7,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-
-  cssLabel: {
-    color : 'green'
-  },
-
-  cssOutlinedInput: {
-    '&$cssFocused $notchedOutline': {
-      borderColor: `${theme.palette.primary.main} !important`,
-    }
-  },
-
-  cssFocused: {},
-
-  notchedOutline: {
-    borderWidth: '1px',
-    borderColor: 'green !important'
-  },
-
-});
-
-
 const MiniHeader = () => {
 
   const cartLength = useSelector(state => state.cart.cartLength);
-
-  const searchRef = useRef();
-  const history = useHistory();
-
-  const searchHandler = () => {
-    if (searchRef.current.value !== '') {
-      history.push(`/search/${searchRef.current.value}`);
-    }
-  }
-
-  const textHandler = (e) => {
-    const code = e.keyCode ? e.keyCode : e.which;
-    if (code === 13) {
-      searchHandler();
-    }
-  }
 
   return <div className='miniHeader'>
     <div className="miniHeaderInner">
@@ -84,9 +37,6 @@ const MiniHeader = () => {
             </Button>
           </div>
         </Link>
-      </div>
-      <div className="right">
-        <TextField InputLabelProps={{root:{color: 'white'}}} color='primary' className='searchField' sx={{ input: { color: 'whitesmoke' } }} label='Search' inputRef={searchRef} size='small' InputProps={{ endAdornment: (<InputAdornment position="end"><SearchIcon onClick={searchHandler} style={{ color: 'whitesmoke' }}></SearchIcon></InputAdornment>), classes: {root: {borderColor: 'white'}} }} onKeyDown={textHandler}></TextField>
       </div>
     </div>
   </div>

@@ -7,13 +7,13 @@ const Sort = ({sort, setSort}) => {
   }
 
   return <div>
-    <FormControl>
+    <FormControl style={{marginTop: 10}}>
       <InputLabel>Sort</InputLabel>
       <Select value={sort} onChange={changeHandler} label='sort'>
-        <MenuItem value='price'>[low - high]</MenuItem>
-        <MenuItem value='-price'>[high - low]</MenuItem>
-        <MenuItem value='oldest'>[old - new]</MenuItem>
-        <MenuItem value='-oldest'>[new - old]</MenuItem>
+        <MenuItem value='price'>Price [low - high]</MenuItem>
+        <MenuItem value='-price'>Price [high - low]</MenuItem>
+        <MenuItem value='oldest'>Oldest</MenuItem>
+        <MenuItem value='-oldest'>Newest</MenuItem>
         <MenuItem value='sort' style={{opacity: 0.5}}>Sort</MenuItem>
       </Select>
     </FormControl>

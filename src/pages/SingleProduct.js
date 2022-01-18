@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import SingleProductComponent from '../components/SingleProductComponent'
+import CartButton from "../components/CartButton";
 
 const SingleProduct = () => {
   
@@ -24,6 +25,7 @@ const SingleProduct = () => {
       <Navbar genders={null}></Navbar>
     }
     <SingleProductComponent></SingleProductComponent>
+    <CartButton></CartButton>
     <Footer></Footer>
   </div>
 }

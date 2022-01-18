@@ -20,16 +20,18 @@
 .allProducts .spinnerContainer{
   display: flex;
   justify-content: center;
+  grid-column: span 4;
 }
 .allProducts .productsList{
-  /* todo: remove min-height */
   min-height: 50vh;
 
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 40px 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
 }
 .allProducts .productsList .productCard{
   margin-bottom: 20px;
@@ -191,7 +193,14 @@ section.newsletter{
   justify-content: space-between;
 }
 
-
+@media screen and (max-width: 1200px) {
+  .allProducts .productsList{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .allProducts .spinnerContainer{
+    grid-column: span 3;
+  }
+}
 
 @media screen and (max-width: 1000px){
   .newsletterInner{
@@ -199,5 +208,32 @@ section.newsletter{
   }
   .newsletterInner button{
     margin-top: 20px;
+  }
+  .allProducts .spinnerContainer{
+    grid-column: span 2;
+  }
+  .allProducts .productsList{
+    grid-template-columns: 1fr 1fr;
+  }
+  .singleProduct .container{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .singleProduct .left, .singleProduct .right{
+    width: 100%;
+  }
+  .singleProduct p.descText{
+    max-width: 95%;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .allProducts .productsList{
+    grid-template-columns: 1fr;
+  }
+  .allProducts .spinnerContainer{
+    grid-column: span 1;
   }
 }
