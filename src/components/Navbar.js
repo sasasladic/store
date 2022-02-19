@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState, Fragment, useRef } from "react";
-import {TextField} from '@mui/material'
+import {Grid, Stack, TextField} from '@mui/material'
 import { Link, useHistory } from "react-router-dom";
 import { InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
@@ -110,39 +110,45 @@ const Navbar = ({genders}) => {
               <span>MENU</span>
             </div>
               :
-            <Fragment>
-              <ul className='desktopMenuContainer'>
-                <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
-                <li id='linkMale' className={pathname.slice(0, 11) === '/products/m' ? 'active' : ''}><Link to='/products/mALL'>
-                  MEN
-                </Link></li>
-                <div className='maleHoverContainer hoverContainer hide'>
-                  {genders ?
-                    <MaleHoverContainer data={ genders[0].categories}/>
-                    :
-                    <Box sx={{ display: 'flex', margin: '40px' }}>
-                      <CircularProgress />
-                    </Box>
-                  }
-                </div>
-                <li id='linkFemale' className={pathname.slice(0, 11) === '/products/f' ? 'active' : ''}><Link to='/products/fALL'>
-                  WOMEN
-                </Link></li>
-                <div className='femaleHoverContainer hoverContainer hide'>
-                  {genders ?
-                    <FemaleHoverContainer data={ genders[1].categories} />
-                    :
-                    <Box sx={{ display: 'flex', margin: '40px' }}>
-                      <CircularProgress />
-                    </Box>
-                  }
-                </div>
-                <li className={pathname === '/contact' ? 'active' : ''}><Link to='/contact'>CONTACT</Link></li>
-                </ul>
-                <TextField style={{marginBottom: 10}} size='small' color='primary' className='searchField' label='Search' inputRef={searchRef} InputProps={{ endAdornment: (<InputAdornment position="end"><SearchIcon onClick={searchHandler}></SearchIcon></InputAdornment>)}} onKeyDown={textHandler}></TextField>
-            </Fragment>
+            <Grid container>
+              <Grid item xs={9}>
+                <ul className='desktopMenuContainer' style={{marginTop: 14}}>
+                  <li className={pathname === '/' ? 'active' : ''}><Link to='/'>HOME</Link></li>
+                  <li id='linkMale' className={pathname.slice(0, 11) === '/products/m' ? 'active' : ''}>
+                    <Link to='/products/mALL'>MEN</Link>
+                  </li>
+                  <div className='maleHoverContainer hoverContainer hide'>
+                    {genders ?
+                      <MaleHoverContainer data={ genders[0].categories}/>
+                      :
+                      <Box sx={{ display: 'flex', margin: '40px' }}>
+                        <CircularProgress />
+                      </Box>
+                    }
+                  </div>
+                  <li id='linkFemale' className={pathname.slice(0, 11) === '/products/f' ? 'active' : ''}>
+                    <Link to='/products/fALL'>WOMEN</Link>
+                  </li>
+                  <div className='femaleHoverContainer hoverContainer hide'>
+                    {genders ?
+                      <FemaleHoverContainer data={ genders[1].categories} />
+                      :
+                      <Box sx={{ display: 'flex', margin: '40px' }}>
+                        <CircularProgress />
+                      </Box>
+                    }
+                  </div>
+                  <li className={pathname === '/contact' ? 'active' : ''}><Link to='/contact'>CONTACT</Link></li>
+                  </ul>
+                </Grid>
+                <Grid item xs={3}>
+                  <Stack direction="row" justifyContent="flex-end" alignItems="center">
+                    <TextField style={{marginTop: 5}} size='small' color='primary' className='searchField' label='Search' inputRef={searchRef} InputProps={{ endAdornment: (<InputAdornment position="end"><SearchIcon onClick={searchHandler}></SearchIcon></InputAdornment>)}} onKeyDown={textHandler}></TextField>
+                  </Stack>
+                </Grid>
+            </Grid>
             }
-            <img className="logoFixed" src={logoImg} alt="react logo" />
+            <Link to='/'><img className="logoFixed" src={logoImg} alt="react logo"/></Link>
           </div>
         </div>
       </div>
